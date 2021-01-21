@@ -6,7 +6,17 @@ import argsparse
 import sys
 import time
 
+''' xor for later
+def xor(toxor: str, xorKey: str) -> bytes:
+    key = bytes(xorkey.encode("utf-8"))
+    charList = bytes(tochange.encode("utf-8"))
+    extended_key = key * (len(charList))
+    xord = []
+    for x in range(len(charList)):
+        xord.append(charList[x]^extended_key[x])
 
+    return bytes(xord)
+'''
 def b64_file(file_up: str) -> bytes:
     with open(file_up, "rb") as f:
         myFile = f.read()
