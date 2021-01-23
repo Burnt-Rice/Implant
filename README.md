@@ -1,5 +1,5 @@
 # A n00b's Perspective to Red Team: DYI Implant<br><br>
-## To Execute implant_blog.py 
+## To Execute Implant 
 `python3 implant_blog.py`
 
 ## Execute Client
