@@ -22,4 +22,4 @@ optional arguments:
                         Example: ./client.py 127.0.0.1 9999 --upload
                         /etc/passwd --destination_file /path/on/remote/server
   --execute <execute_command>
-                        Example: ./client.py 127.0.0.1 9999 --execute /bin/ls```
+                        Example: ./client.py 127.0.0.1 9999 --execute /bin/ls
