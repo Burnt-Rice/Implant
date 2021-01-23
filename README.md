@@ -1,5 +1,6 @@
 # A n00b's Perspective to Red Team: DYI Implant<br><br>
-``` usage: client.py [-h] [--download <download_file>] [--upload <upload_file>]
+``` 
+usage: client.py [-h] [--download <download_file>] [--upload <upload_file>]
                  [--destination_file <destination_file>]
                  [--execute <execute_command>]
                  <destination_ip> <destination_port>
