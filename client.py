@@ -4,7 +4,7 @@ import socket
 import base64
 import argparse
 import sys
-import time
+
 
 """ xor for later
 def xor(toxor: str, xorKey: str) -> bytes:
@@ -56,10 +56,14 @@ def main():
     # parser arguments
     parser = argparse.ArgumentParser(description="Communicates to Implant")
     parser.add_argument(
-        "IP", metavar="<destination_ip>", help="Example: ./client.py <destination_host>"
+        "IP", 
+        metavar="<destination_ip>", 
+        help="Example: ./client.py <destination_host>"
     )
     parser.add_argument(
-        "PORT", metavar="<destination_port>", help="Example: ./client.py 127.0.0.1 9999"
+        "PORT", 
+        metavar="<destination_port>", 
+        help="Example: ./client.py 127.0.0.1 9999"
     )
     parser.add_argument(
         "--download",
